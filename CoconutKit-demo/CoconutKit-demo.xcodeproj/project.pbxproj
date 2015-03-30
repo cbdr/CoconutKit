@@ -1089,7 +1089,6 @@
 		E61173A31A65779D0066C42C /* NibViewAutoresizingMasksSimpleDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NibViewAutoresizingMasksSimpleDemoViewController.m; sourceTree = "<group>"; };
 		E61173A41A65779D0066C42C /* NibViewAutoresizingMasksSimpleDemoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NibViewAutoresizingMasksSimpleDemoViewController.xib; sourceTree = "<group>"; };
 		E67CF59A1AC2839200AA0C3B /* CoconutKit (framework).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CoconutKit (framework).app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E67CF59B1AC2839200AA0C3B /* CoconutKit-demo copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "CoconutKit-demo copy-Info.plist"; path = "/Users/samuel.defago/Development/repositories/CoconutKit/CoconutKit-demo/CoconutKit-demo copy-Info.plist"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1156,7 +1155,6 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				6F8CC0A519DC2A3D003286F7 /* version.xcconfig */,
-				E67CF59B1AC2839200AA0C3B /* CoconutKit-demo copy-Info.plist */,
 			);
 			indentWidth = 4;
 			name = CustomTemplate;
