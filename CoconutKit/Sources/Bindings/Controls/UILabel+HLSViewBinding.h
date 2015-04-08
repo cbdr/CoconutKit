@@ -16,5 +16,4 @@
  *   - does not animate updates
  */
 @interface UILabel (HLSViewBindingImplementation) <HLSViewBindingImplementation>
-
 @end
