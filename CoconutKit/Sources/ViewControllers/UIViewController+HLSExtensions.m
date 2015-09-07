@@ -180,7 +180,7 @@ static void swizzled_UIViewController__viewDidDisappear_Imp(UIViewController *se
 #pragma mark Class methods
 
 + (void)load
-{ 
+{
     s_UIViewController__initWithNibName_bundle_Imp = (id (*)(id, SEL, id, id))hls_class_swizzleSelector(self,
                                                                                                         @selector(initWithNibName:bundle:),
                                                                                                         (IMP)swizzled_UIViewController__initWithNibName_bundle_Imp);
