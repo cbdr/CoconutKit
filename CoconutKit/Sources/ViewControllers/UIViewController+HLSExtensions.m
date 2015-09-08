@@ -240,23 +240,24 @@ static id swizzled_UIViewController__initWithCoder_Imp(UIViewController *self, S
 
 static void swizzled_UIViewController__viewDidLoad_Imp(UIViewController *self, SEL _cmd)
 {
-    if (! [self isViewLoaded]) {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException 
-                                       reason:@"The view controller's view has not been loaded" 
-                                     userInfo:nil];
+    if (![self isViewLoaded]) {
+        HLSLoggerWarn(@"The viewDidLoad method has been called on %@, but its current view has not been loaded yet, we are just going to ignore the call until next call to viewDidLoad has its view loaded", NSStringFromClass([self class]));
+        // The viewDidLoad method has been called on this ViewController, but its current view has not been loaded yet, we are just going to ignore the call until next call to viewDidLoad has its view loaded
+        return;
+    } else {
+        objc_setAssociatedObject(self, s_createdViewSizeKey, [NSValue valueWithCGSize:self.view.bounds.size], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        
+        (*s_UIViewController__viewDidLoad_Imp)(self, _cmd);
+        
+        if (! [self isReadyForLifeCyclePhase:HLSViewControllerLifeCyclePhaseViewDidLoad]) {
+            HLSLoggerWarn(@"The viewDidLoad method has been called on %@, but its current view lifecycle state is not compatible. "
+                          "Maybe the view controller is displayed using a container object with incorrect view lifecycle management, "
+                          "or maybe [super viewDidLoad] has not been called by class %@ or one of its parents", self, [self class]);
+        }
+        
+        [self setLifeCyclePhase:HLSViewControllerLifeCyclePhaseViewDidLoad];
+        
     }
-    
-    objc_setAssociatedObject(self, s_createdViewSizeKey, [NSValue valueWithCGSize:self.view.bounds.size], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
-    (*s_UIViewController__viewDidLoad_Imp)(self, _cmd);
-    
-    if (! [self isReadyForLifeCyclePhase:HLSViewControllerLifeCyclePhaseViewDidLoad]) {
-        HLSLoggerWarn(@"The viewDidLoad method has been called on %@, but its current view lifecycle state is not compatible. "
-                      "Maybe the view controller is displayed using a container object with incorrect view lifecycle management, "
-                      "or maybe [super viewDidLoad] has not been called by class %@ or one of its parents", self, [self class]);
-    }
-    
-    [self setLifeCyclePhase:HLSViewControllerLifeCyclePhaseViewDidLoad];
 }
 
 static void swizzled_UIViewController__viewWillAppear_Imp(UIViewController *self, SEL _cmd, BOOL animated)
